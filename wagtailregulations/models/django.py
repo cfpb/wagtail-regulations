@@ -12,7 +12,6 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.html import strip_tags
 
-from wagtail.contrib.wagtailfrontendcache.utils import PurgeBatch
 from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 import regdown
@@ -301,26 +300,3 @@ class SectionParagraph(models.Model):
     def __str__(self):
         return "Section {}-{} paragraph {}".format(
             self.section.part, self.section.label, self.paragraph_id)
-
-
-@receiver(post_save, sender=EffectiveVersion)
-def effective_version_saved(sender, instance, **kwargs):
-    """ Invalidate the cache if the effective_version is not a draft """
-    if not instance.draft:
-        batch = PurgeBatch()
-        for page in instance.part.page.all():
-            urls = page.get_urls_for_version(instance)
-            batch.add_urls(urls)
-        batch.purge()
-
-
-@receiver(post_save, sender=Section)
-def section_saved(sender, instance, **kwargs):
-    if not instance.subpart.version.draft:
-        batch = PurgeBatch()
-        for page in instance.subpart.version.part.page.all():
-            urls = page.get_urls_for_version(
-                instance.subpart.version, section=instance
-            )
-            batch.add_urls(urls)
-        batch.purge()
