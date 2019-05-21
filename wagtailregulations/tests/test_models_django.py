@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import datetime
 import sys
 
-# from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from model_mommy import mommy
@@ -162,18 +162,6 @@ class RegModelTests(TestCase):
             self.assertEqual(
                 self.section_num4.__str__(),
                 '\xa7\xa01002.4 General rules.'.encode('utf8'))
-
-    def test_section_export_graphs(self):
-        test_counts = self.section_num4.extract_graphs()
-        self.assertEqual(test_counts['section'], "1002-4")
-        self.assertEqual(test_counts['created'], 4)
-        self.assertEqual(test_counts['deleted'], 1)
-        self.assertEqual(test_counts['kept'], 1)
-
-    def test_section_paragraph_str(self):
-        self.assertEqual(
-            self.graph_to_keep.__str__(),
-            "Section 1002-4 paragraph d")
 
     def test_subpart_headings(self):
         for each in Subpart.objects.all():
