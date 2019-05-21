@@ -96,19 +96,6 @@ class RegModelTests(TestCase):
             ),
             subpart=self.subpart,
         )
-        self.graph_to_keep = mommy.make(
-            SectionParagraph,
-            section=self.section_num4,
-            paragraph_id='d',
-            paragraph=(
-                '(1) General rule. A creditor that provides in writing.')
-        )
-        self.graph_to_delete = mommy.make(
-            SectionParagraph,
-            section=self.section_num4,
-            paragraph_id='x',
-            paragraph='(x) Non-existent graph that should get deleted.'
-        )
         self.section_num15 = mommy.make(
             Section,
             label='15',
