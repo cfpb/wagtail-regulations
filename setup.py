@@ -4,17 +4,20 @@ from setuptools import find_packages, setup
 long_description = open('README.md', 'r').read()
 
 install_requires = [
+    'regdown>=1.0',
     'wagtail>=1.13,<2.4',
-    'django-flags>=4.0,<5.0'
+    'wagtail-treemodeladmin>=1.0',
 ]
 
 testing_extras = [
     'coverage>=3.7.0',
+    'mock>=2.0.0',
+    'model_mommy>=1.6.0',
 ]
 
 setup(
     name='wagtail-regulations',
-    url='https://github.com/cfpb/wagtail-flags',
+    url='https://github.com/cfpb/wagtail-regulations',
     author='CFPB',
     author_email='tech@cfpb.gov',
     description='Building blocks for interactive regulations in Wagtail',
