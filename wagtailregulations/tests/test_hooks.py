@@ -73,7 +73,9 @@ class TestRegs3kHooks(TestCase, WagtailTestUtils):
         self.assertEqual(response.status_code, 200)
 
     def test_effectiveversion_model_admin(self):
-        response = self.client.get('/admin/wagtailregulations/effectiveversion/')
+        response = self.client.get(
+            '/admin/wagtailregulations/effectiveversion/'
+        )
         self.assertEqual(response.status_code, 200)
 
     def test_subpart_model_admin(self):

@@ -5,7 +5,7 @@ from datetime import date
 from wagtail.contrib.modeladmin.options import modeladmin_register
 
 from treemodeladmin.options import TreeModelAdmin
-from treemodeladmin.views import TreeIndexView
+# from treemodeladmin.views import TreeIndexView
 from wagtailregulations.copyable_modeladmin import CopyableModelAdmin
 from wagtailregulations.models import EffectiveVersion, Part, Section, Subpart
 

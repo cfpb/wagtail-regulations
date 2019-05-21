@@ -8,7 +8,11 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
+
+try:  # pragma: no cover
+    from wagtail.admin.edit_handlers import FieldPanel
+except ImportError:  # pragma: no cover
+    from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 
 def sortable_label(label, separator='-'):
@@ -86,7 +90,9 @@ class EffectiveVersion(models.Model):
     effective_date = models.DateField(default=date.today)
     created = models.DateField(default=date.today)
     draft = models.BooleanField(default=False)
-    part = models.ForeignKey(Part, related_name="versions")
+    part = models.ForeignKey(
+        Part, related_name="versions", on_delete=models.CASCADE
+    )
 
     panels = [
         FieldPanel('authority'),
@@ -146,7 +152,9 @@ class EffectiveVersion(models.Model):
 class Subpart(models.Model):
     label = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255, blank=True)
-    version = models.ForeignKey(EffectiveVersion, related_name="subparts")
+    version = models.ForeignKey(
+        EffectiveVersion, related_name="subparts", on_delete=models.CASCADE
+    )
 
     BODY = 0000
     APPENDIX = 1000
@@ -194,7 +202,9 @@ class Section(models.Model):
     label = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255, blank=True)
     contents = models.TextField(blank=True)
-    subpart = models.ForeignKey(Subpart, related_name="sections")
+    subpart = models.ForeignKey(
+        Subpart, related_name="sections", on_delete=models.CASCADE
+    )
     sortable_label = models.CharField(max_length=255)
 
     panels = [
