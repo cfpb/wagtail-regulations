@@ -117,6 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'taggit',
 ) + WAGTAIL_APPS + (
+    'treemodeladmin',
     'wagtailregulations',
 )
 

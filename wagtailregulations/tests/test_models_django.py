@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 import datetime
@@ -195,8 +196,8 @@ class RegModelTests(TestCase):
 
     def test_sortable_label(self):
         self.assertEqual(
-            sortable_label('1-A-Interp'),
-            ('0001', 'A', 'interp')
+            sortable_label('1-A-Interp-√'),
+            ('0001', 'A', 'interp', '√')
         )
 
     def test_section_ranges(self):
