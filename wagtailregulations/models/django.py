@@ -287,16 +287,3 @@ class Section(models.Model):
             return self.title.replace(self.numeric_label, '').strip()
         else:
             return self.title
-
-
-@python_2_unicode_compatible
-class SectionParagraph(models.Model):
-    """Provide storage for section paragraphs."""
-
-    paragraph = models.TextField(blank=True)
-    paragraph_id = models.CharField(max_length=255, blank=True)
-    section = models.ForeignKey(Section, related_name="paragraphs")
-
-    def __str__(self):
-        return "Section {}-{} paragraph {}".format(
-            self.section.part, self.section.label, self.paragraph_id)
