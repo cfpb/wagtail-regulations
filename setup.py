@@ -5,7 +5,7 @@ long_description = open('README.md', 'r').read()
 
 install_requires = [
     'regdown>=1.0',
-    'wagtail>=1.13,<2.4',
+    'wagtail>=1.13,<2.8',
     'wagtail-treemodeladmin>=1.0',
 ]
 
@@ -24,7 +24,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='CC0',
-    version='4.0.2',
+    version='1.0.0',
     include_package_data=True,
     packages=find_packages(),
     install_requires=install_requires,
@@ -42,8 +42,6 @@ setup(
         'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
         'License :: Public Domain',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
     ]
