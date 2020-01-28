@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: `Federalist | Gatsby | USWDS`,
+    title: `Wagtail Regulations`,
     header: {
       secondaryLinks: [
         { text: 'Secondary link', link: '/' },
@@ -10,11 +10,11 @@ module.exports = {
       ],
       navigation: [
         {
-          title: 'Current Section',
+          title: 'Regulations',
           items: [
-            { text: 'Navigation link', link: '/' },
-            { text: 'Navigation link', link: '/' },
-            { text: 'Navigation link', link: '/' },
+            { text: '§ 1041', link: '/regulation' },
+            { text: '§ 1042', link: '/regulation' },
+            { text: '§ 1043', link: '/regulation' },
           ],
         },
         {
