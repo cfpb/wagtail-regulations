@@ -5,14 +5,14 @@ import datetime
 import sys
 
 from django.core.exceptions import ValidationError
-from model_mommy import mommy
 
-from wagtailregulations.tests.utils import RegulationsTestCase
+from model_mommy import mommy
 from wagtailregulations.models.django import (
     EffectiveVersion,
     Subpart,
     sortable_label,
 )
+from wagtailregulations.tests.utils import RegulationsTestCase
 
 
 class RegModelTests(RegulationsTestCase):

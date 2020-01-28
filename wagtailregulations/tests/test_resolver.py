@@ -1,28 +1,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-import datetime
+from django.test import override_settings
 
-from django.test import TestCase, override_settings
-
-from model_mommy import mommy
 from regdown import DEFAULT_RENDER_BLOCK_REFERENCE, regdown
-
-from wagtail.wagtailcore.models import Site, Page
-from wagtailregulations.models import (
-    EffectiveVersion,
-    Part,
-    Section,
-    Subpart,
+from regulations_example.models import (
+    TestRegulationLandingPage,
+    TestRegulationPage,
 )
 from wagtailregulations.resolver import (
-    get_contents_resolver, get_url_resolver, resolve_reference
+    get_contents_resolver,
+    get_url_resolver,
+    resolve_reference,
 )
 from wagtailregulations.tests.utils import RegulationsTestCase
 
-from regulations_example.models import (
-    TestRegulationLandingPage, TestRegulationPage
-)
+
+try:
+    from wagtail.core.models import Site
+except ImportError:
+    from wagtail.wagtailcore.models import Site
 
 
 # Our setup and tests use as close to regulation examples as possible.
@@ -107,4 +104,3 @@ class ReferenceResolutionTestCase(RegulationsTestCase):
         url_resolver = get_url_resolver(self.reg_page)
         result = url_resolver('2-c-Interp')
         self.assertEqual(result, '/reg-landing/1002/Interp-2/#c-Interp')
-

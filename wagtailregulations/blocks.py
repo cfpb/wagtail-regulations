@@ -1,12 +1,16 @@
 from datetime import date
 
-from django.db.models import Prefetch
 from django.apps import apps
+from django.db.models import Prefetch
 from django.utils.html import format_html
 
-from wagtail.wagtailcore import blocks
-
 from wagtailregulations.models.django import EffectiveVersion
+
+
+try:
+    from wagtail.core import blocks
+except ImportError:
+    from wagtail.wagtailcore import blocks
 
 
 class BaseRegulationsList(blocks.StructBlock):

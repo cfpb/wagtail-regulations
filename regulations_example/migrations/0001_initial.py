@@ -4,9 +4,15 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.contrib.wagtailroutablepage.models
-import wagtail.wagtailcore.blocks
-import wagtail.wagtailcore.fields
+
+try:
+    from wagtail.contrib.routable_page.models import RoutablePageMixin
+    from wagtail.core import blocks
+    from wagtail.core import fields
+except ImportError:
+    from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin
+    from wagtail.wagtailcore import blocks
+    from wagtail.wagtailcore import fields
 
 
 class Migration(migrations.Migration):
@@ -23,23 +29,23 @@ class Migration(migrations.Migration):
             name='TestRegulationLandingPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.wagtailcore.fields.StreamField((('title', wagtail.wagtailcore.blocks.CharBlock()), ('introduction', wagtail.wagtailcore.blocks.RichTextBlock()), ('regulations_list', wagtail.wagtailcore.blocks.StructBlock((('heading', wagtail.wagtailcore.blocks.CharBlock(help_text='Regulations list heading', required=False)), ('more_regs_page', wagtail.wagtailcore.blocks.PageChooserBlock(help_text='Link to more regulations')), ('more_regs_text', wagtail.wagtailcore.blocks.CharBlock(help_text='Text to show on link to more regulations', required=False)))))))),
+                ('body', fields.StreamField((('title', blocks.CharBlock()), ('introduction', blocks.RichTextBlock()), ('regulations_list', blocks.StructBlock((('heading', blocks.CharBlock(help_text='Regulations list heading', required=False)), ('more_regs_page', blocks.PageChooserBlock(help_text='Link to more regulations')), ('more_regs_text', blocks.CharBlock(help_text='Text to show on link to more regulations', required=False)))))))),
             ],
             options={
                 'abstract': False,
             },
-            bases=(wagtail.contrib.wagtailroutablepage.models.RoutablePageMixin, 'wagtailcore.page'),
+            bases=(RoutablePageMixin, 'wagtailcore.page'),
         ),
         migrations.CreateModel(
             name='TestRegulationPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.wagtailcore.fields.StreamField((('title', wagtail.wagtailcore.blocks.CharBlock()), ('introduction', wagtail.wagtailcore.blocks.RichTextBlock())))),
+                ('body', fields.StreamField((('title', blocks.CharBlock()), ('introduction', blocks.RichTextBlock())))),
                 ('regulation', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name='page', to='wagtailregulations.Part')),
             ],
             options={
                 'abstract': False,
             },
-            bases=(wagtail.contrib.wagtailroutablepage.models.RoutablePageMixin, 'wagtailcore.page', models.Model),
+            bases=(RoutablePageMixin, 'wagtailcore.page', models.Model),
         ),
     ]

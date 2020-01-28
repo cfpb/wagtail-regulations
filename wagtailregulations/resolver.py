@@ -3,7 +3,6 @@ import re
 from django.conf import settings
 
 from regdown import extract_labeled_paragraph
-
 from wagtailregulations.models import Section
 
 
@@ -86,4 +85,3 @@ def get_url_resolver(page, date_str=None):
         )
 
     return url_resolver
-

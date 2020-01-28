@@ -1,23 +1,14 @@
-from __future__ import unicode_literals
-
-import datetime
-
-from django.test import TestCase, override_settings
-
-from wagtail.wagtailcore.blocks import StreamValue
-from wagtail.wagtailcore.models import Page, Site
-
-from model_mommy import mommy
-from wagtailregulations.blocks import BaseRegulationsList
-from wagtailregulations.models.django import EffectiveVersion, Part
-from wagtailregulations.models.pages import RegulationPageMixin
-
-from wagtailregulations.tests.utils import RegulationsTestCase
+try:
+    from wagtail.core.models import Page, Site
+except ImportError:
+    from wagtail.wagtailcore.models import Page, Site
 
 from regulations_example.models import (
     TestRegulationLandingPage,
     TestRegulationPage,
 )
+from wagtailregulations.blocks import BaseRegulationsList
+from wagtailregulations.tests.utils import RegulationsTestCase
 
 
 class RegulationsListTestCase(RegulationsTestCase):

@@ -1,44 +1,31 @@
 from __future__ import unicode_literals
 
 import datetime
-import sys
 import unittest
 
 # from django.core.urlresolvers import reverse
 from django.contrib.auth.models import AnonymousUser, User
-from django.core.exceptions import PermissionDenied, ValidationError
-from django.core.paginator import Paginator
-from django.http import Http404, HttpRequest, QueryDict
-from django.test import (
-    RequestFactory,
-    TestCase,
-    override_settings,
+from django.http import Http404
+from django.test import RequestFactory
+
+from regulations_example.models import (
+    TestRegulationLandingPage,
+    TestRegulationPage,
 )
-
-from wagtail.wagtailcore.models import Site, Page
-
-import mock
-from model_mommy import mommy
-
-from wagtailregulations.models.django import (
-    EffectiveVersion,
-    Part,
-    Section,
-    Subpart,
-    sortable_label,
-)
+from wagtailregulations.models.django import Subpart
 from wagtailregulations.models.pages import (
     get_next_section,
     get_previous_section,
     get_secondary_nav_items,
     get_section_url,
 )
-
 from wagtailregulations.tests.utils import RegulationsTestCase
 
-from regulations_example.models import (
-    TestRegulationLandingPage, TestRegulationPage
-)
+
+try:
+    from wagtail.core.models import Site
+except ImportError:
+    from wagtail.wagtailcore.models import Site
 
 
 class RegModelTests(RegulationsTestCase):

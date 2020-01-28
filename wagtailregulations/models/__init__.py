@@ -6,4 +6,4 @@ from wagtailregulations.models.django import (
     Subpart,
     sortable_label,
 )
-from wagtailregulations.models.pages import RegulationPageMixin, RegulationPage
+from wagtailregulations.models.pages import RegulationPage, RegulationPageMixin
