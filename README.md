@@ -1,4 +1,4 @@
-# Wagtail-Regulations
+# Wagtail Regulations
 
 [![Build Status](https://travis-ci.org/cfpb/wagtail-regulations.svg?branch=master)](https://travis-ci.org/cfpb/wagtail-regulations)
 [![Coverage Status](https://coveralls.io/repos/github/cfpb/wagtail-regulations/badge.svg?branch=master)](https://coveralls.io/github/cfpb/wagtail-regulations?branch=master)
@@ -23,6 +23,40 @@ Building blocks for interactive regulations in Wagtail.
 
 
 ## Usage
+
+
+### Components
+
+
+#### Regulation pages
+
+Regulation pages are routable Wagtail pages that live in the Wagtail page 
+tree and serve the regulation content.
+
+
+#### Regulation content
+
+Regulation content is stored in Markdown outside of the Wagtail page tree.
+
+
+#### Regulation search
+
+Regulation content is indexed and searchable using Haystack.
+
+
+#### Regulation API
+
+The API provides access to the regulation pages and their content so that a 
+frontend can consume it.
+
+
+#### Frontend
+
+The frontend serves the regulation content and search to end users.
+
+
+### Putting it all together
+
 
 
 ## Getting help
