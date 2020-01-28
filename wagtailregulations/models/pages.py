@@ -17,6 +17,7 @@ from regdown import regdown
 from wagtailregulations.models import Part, Section
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 
+from wagtail.api import APIField
 
 try:
     from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -47,6 +48,11 @@ class RegulationPageMixin(RoutablePageMixin, models.Model):
 
     content_panels = [
         FieldPanel('regulation', Part),
+    ]
+
+    # Export fields over the API
+    api_fields = [
+        APIField('regulation'),
     ]
 
     template = 'wagtailregulations/regulation_index.html'
