@@ -47,6 +47,7 @@ if wagtail.VERSION >= (2, 0):  # pragma: no cover
         'wagtail.images',
         'wagtail.sites',
         'wagtail.users',
+        'wagtail.contrib.routable_page',
     )
 
     WAGTAIL_MIDDLEWARE = (
@@ -73,6 +74,7 @@ else:  # pragma: no cover; fallback for Wagtail < 2.0
         'wagtail.wagtailimages',
         'wagtail.wagtailsites',
         'wagtail.wagtailusers',
+        'wagtail.contrib.wagtailroutablepage',
     )
 
     WAGTAIL_MIDDLEWARE = (
@@ -119,6 +121,7 @@ INSTALLED_APPS = (
 ) + WAGTAIL_APPS + (
     'treemodeladmin',
     'wagtailregulations',
+    'regulations_example',
 )
 
 STATIC_URL = '/static/'

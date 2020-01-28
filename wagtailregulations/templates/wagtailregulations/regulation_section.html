@@ -1,0 +1,33 @@
+{% load wagtailroutablepage_tags %}
+
+<h1>{{section.title}}</h1>
+
+{% if requested_version != current_version %}
+  <h4>This version is not the current regulation.</h4>
+  <p>
+    {% if requested_version.effective_date < current_version.effective_date %}
+        You are viewing a previous version of this regulation with amendments that went into effect on
+    {% endif %}
+    {% if requested_version.effective_date > current_version.effective_date %}
+      You are viewing a future version of this regulation with amendments that will go into effect on
+    {% endif %}
+    {{ requested_version.effective_date }}. 
+    <a href="{% routablepageurl page 'versions' section_label=section.label %}">View all versions of this regulation</a>
+  </p>
+{% else %}
+  <p>This version is the current regulation</p>
+  {% if num_versions > 1 %}
+    <ul>
+      <li class="m-list_item">
+        <a class="m-list_link" href="{% routablepageurl page 'versions' section_label=section.label %}">
+          View all versions of this regulation
+        </a>
+      </li>
+    </ul>
+  {% endif %}
+{% endif %}
+
+<section>
+  {{content|safe}}
+</section>
+
