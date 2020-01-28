@@ -1,0 +1,11 @@
+Django>=2.2,<2.3
+django-dotenv==1.4.1
+wagtail>=2.5,<2.6
+Pillow<6.0,>=4.0.0
+elasticsearch==2.4.1
+dj-database-url==0.4.1
+uwsgi>=2.0.17,<2.1
+psycopg2>=2.7,<3.0
+wagtail-treemodeladmin>=1.0.4,<1.1
+regdown>=1.0.1,<1.2
+whitenoise==3.2.2

@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  db:
+    environment:
+      POSTGRES_DB: app_db
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: changeme
+    restart: always
+    image: postgres:9.6
+    expose:
+      - "5432"
+  elasticsearch:
+    image: elasticsearch:2.3
+    restart: always
+    expose:
+      - "9200"
+  app:
+    environment:
+      DJANGO_SECRET_KEY: changeme
+      DATABASE_URL: postgres://app_user:changeme@db/app_db
+      ELASTICSEARCH_ENDPOINT: elasticsearch
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./:/code
+    links:
+      - db:db
+      - elasticsearch:elasticsearch
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - elasticsearch
+volumes:
+  media-root:
+

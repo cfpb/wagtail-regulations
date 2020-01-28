@@ -25,6 +25,62 @@ Building blocks for interactive regulations in Wagtail.
 ## Usage
 
 
+### Components
+
+Wagtail Regulations provides the building blocks to create and serve 
+interactive US federal regulations on existing Wagtail sites. 
+It is intended to integrate into sites that may have their base templates, 
+design language and components, and Wagtail base pages. It also provides 
+everything needed to stand-up a new interactive regulations site using the 
+US Web Design System.
+
+The basic components are as follows:
+
+#### Regulation content
+
+Wagtail Regulations includes Django models that represent regulations, their 
+effective versions, subparts, and sections. 
+
+Regulation content is stored in `Section` objects in  Markdown outside of the 
+Wagtail page tree.
+
+#### Regulation pages
+
+Regulation pages are routable Wagtail pages that live in the Wagtail page 
+tree and serve the regulation content from the 
+[regulation content](#regulation-content). Regulation pages can be used two 
+ways:
+
+1. By inheriting from the abstract `wagtailregulations.RegulationPage` model 
+   directly.
+2. By creating a new page model using any `Page` subclass and 
+   `RegulationPageMixin`.
+
+
+#### Regulation search
+
+Regulation content is indexed and searchable using Haystack.
+
+
+#### Regulation API
+
+The API provides access to the regulation pages and their content so that a 
+frontend can consume it.
+
+
+#### Frontend
+
+The frontend serves the regulation content and search to end users.
+
+
+#### eCFR Parser
+
+
+
+### Putting it all together
+
+
+
 ## Getting help
 
 Please add issues to the [issue tracker](https://github.com/cfpb/wagtail-regulations/issues).
