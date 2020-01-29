@@ -27,10 +27,10 @@ class RegModelTests(RegulationsTestCase):
         part = self.part_1002
         self.assertEqual(
             part.cfr_title,
-            "{} CFR Part {} (Regulation {})".format(
+            "{} CFR Part {} ({})".format(
                 part.cfr_title_number,
                 part.part_number,
-                part.letter_code))
+                part.short_name))
 
     def test_subpart_string_method(self):
         self.assertEqual(

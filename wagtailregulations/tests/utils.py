@@ -15,16 +15,17 @@ class RegulationsTestCase(TestCase):
     def setUp(self):
         self.part_1002 = mommy.make(
             Part,
+            cfr_title_number='12',
             part_number='1002',
             title='Equal Credit Opportunity Act',
-            letter_code='B',
+            short_name='Regulation B',
             chapter='X'
         )
         self.part_1030 = mommy.make(
             Part,
             part_number='1030',
             title='Truth In Savings',
-            letter_code='DD', chapter='X'
+            short_name='Regulation DD', chapter='X'
         )
         self.effective_version = mommy.make(
             EffectiveVersion,

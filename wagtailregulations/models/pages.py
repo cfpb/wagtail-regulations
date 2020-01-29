@@ -16,6 +16,7 @@ from django.template.response import TemplateResponse
 from regdown import regdown
 from wagtailregulations.models import Part, Section
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
+from wagtailregulations.serializers import PartSerializer
 
 from wagtail.api import APIField
 
@@ -52,7 +53,7 @@ class RegulationPageMixin(RoutablePageMixin, models.Model):
 
     # Export fields over the API
     api_fields = [
-        APIField('regulation'),
+        APIField('regulation', serializer=PartSerializer()),
     ]
 
     template = 'wagtailregulations/regulation_index.html'
