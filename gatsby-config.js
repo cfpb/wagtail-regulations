@@ -17,17 +17,6 @@ module.exports = {
             { text: '§ 1043', link: '/regulation' },
           ],
         },
-        {
-          title: 'Section',
-          items: [
-            { text: 'Navigation link', link: '/' },
-            { text: 'Navigation link', link: '/' },
-            { text: 'Navigation link', link: '/' },
-          ],
-        },
-        {
-          items: [{ text: 'Agency Spending', link: '/spending' }],
-        },
       ],
     },
   },
