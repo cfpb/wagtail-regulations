@@ -1,9 +1,14 @@
 from rest_framework import relations, serializers
 
+from regdown import regdown
+
+from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 from wagtailregulations.models import Part, EffectiveVersion, Subpart, Section
 
 
 class SectionSerializer(serializers.ModelSerializer):
+    html_contents = serializers.SerializerMethodField()
+
     class Meta:
         model = Section
         fields = (
@@ -11,7 +16,18 @@ class SectionSerializer(serializers.ModelSerializer):
             'subpart',
             'title',
             'contents',
+            'html_contents',
         )
+
+    def get_html_contents(self, section):
+        effective_version = section.subpart.version
+        date_str = str(effective_version.effective_date)
+        html_contents = regdown(
+            section.contents,
+            # url_resolver=get_url_resolver(self, date_str=date_str),
+            # contents_resolver=get_contents_resolver(effective_version),
+        )
+        return html_contents
 
 
 class SubpartSerializer(serializers.ModelSerializer):

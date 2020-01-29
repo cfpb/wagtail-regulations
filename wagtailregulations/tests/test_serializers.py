@@ -15,6 +15,10 @@ except ImportError:
 
 class SerializersTestCase(RegulationsTestCase):
 
+    def test_section_serialier(self):
+        data = SectionSerializer(self.section_num4).data
+        self.assertIn('html_contents', data)
+
     def test_subpart_serialier(self):
         data = SubpartSerializer(self.subpart).data
         self.assertIn('sections', data)
