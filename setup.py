@@ -6,7 +6,8 @@ long_description = open('README.md', 'r').read()
 install_requires = [
     'regdown>=1.0',
     'wagtail>=1.13,<2.8',
-    'wagtail-treemodeladmin>=1.0',
+    'wagtail-treemodeladmin>=1.0.0',
+    'wagtail-copyablemodeladmin>=1.0.0',
 ]
 
 testing_extras = [
