@@ -10,7 +10,7 @@ matrix:
       python: 3.6
     - env: TOXENV=py36-dj111-wag22
       python: 3.6
-    - env: TOXENV=py36-dj22-wag22
+    - env: TOXENV=py36-dj20-wag22
       python: 3.6
     - env: TOXENV=py36-dj22-wag27
       python: 3.6
