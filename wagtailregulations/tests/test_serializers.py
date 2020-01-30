@@ -1,16 +1,10 @@
 from wagtailregulations.serializers import (
-    SectionSerializer,
-    SubpartSerializer,
     EffectiveVersionSerializer,
     PartSerializer,
+    SectionSerializer,
+    SubpartSerializer,
 )
 from wagtailregulations.tests.utils import RegulationsTestCase
-
-
-try:
-    from wagtail.core.models import Site
-except ImportError:
-    from wagtail.wagtailcore.models import Site
 
 
 class SerializersTestCase(RegulationsTestCase):

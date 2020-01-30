@@ -13,12 +13,13 @@ from django.shortcuts import redirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
+from wagtail.api import APIField
+
 from regdown import regdown
 from wagtailregulations.models import Part, Section
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 from wagtailregulations.serializers import PartSerializer
 
-from wagtail.api import APIField
 
 try:
     from wagtail.contrib.routable_page.models import RoutablePageMixin, route

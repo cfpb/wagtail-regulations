@@ -42,7 +42,10 @@ from __future__ import unicode_literals
 
 import re
 
-from wagtailregulations.parser.integer_conversion import alpha_to_int, roman_to_int
+from wagtailregulations.parser.integer_conversion import (
+    alpha_to_int,
+    roman_to_int,
+)
 
 
 class IdLevelState(object):

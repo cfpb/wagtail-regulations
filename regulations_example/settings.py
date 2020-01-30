@@ -8,8 +8,6 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import random
-import string
 
 import dj_database_url
 
@@ -49,7 +47,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.api.v2',
     'wagtail.contrib.modeladmin',
-    'wagtail.contrib.routable_page',
+    'wagtail.contrib-.routable_page',
     'wagtail.core',
 
     'django_extensions',
@@ -106,31 +104,6 @@ WSGI_APPLICATION = 'regulations_example.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=500)
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'regulations_example')
-#     }
-# }
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -164,7 +137,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Use Elasticsearch as the search backend for extra performance and better search results
+# Use Elasticsearch as the search backend for extra performance and better
+# search results
 WAGTAILSEARCH_BACKENDS = {
     'default': {
         'BACKEND': 'wagtail.search.backends.db',
@@ -181,7 +155,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Redirect all requests to HTTPS
 SECURE_SSL_REDIRECT = os.getenv('DJANGO_SECURE_SSL_REDIRECT', 'off') == 'on'
 
-# Accept all hostnames, since we don't know in advance which hostname will be used for any given Heroku instance.
+# Accept all hostnames, since we don't know in advance which hostname will be
+# used for any given Heroku instance.
 # IMPORTANT: Set this to a real hostname when using this in production!
 # See https://docs.djangoproject.com/en/1.10/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
@@ -203,11 +178,11 @@ if ELASTICSEARCH_ENDPOINT:
                 'host': ELASTICSEARCH_ENDPOINT,
                 'port': int(os.getenv('ELASTICSEARCH_PORT', '9200')),
                 'use_ssl': os.getenv('ELASTICSEARCH_USE_SSL', 'off') == 'on',
-                'verify_certs': os.getenv('ELASTICSEARCH_VERIFY_CERTS', 'off') == 'on',
+                'verify_certs': os.getenv(
+                    'ELASTICSEARCH_VERIFY_CERTS', 'off') == 'on',
             }],
             'OPTIONS': {
                 'connection_class': RequestsHttpConnection,
             },
         }
     }
-

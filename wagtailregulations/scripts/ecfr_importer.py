@@ -7,16 +7,21 @@ import sys
 
 import requests
 from bs4 import BeautifulSoup as bS
-
 from wagtailregulations.models.django import Section, Subpart
 from wagtailregulations.parser.integer_conversion import int_to_alpha
 from wagtailregulations.parser.paragraphs import (
-    bold_first_italics, combine_bolds, graph_top, lint_paragraph,
-    pre_process_tags
+    bold_first_italics,
+    combine_bolds,
+    graph_top,
+    lint_paragraph,
+    pre_process_tags,
 )
 from wagtailregulations.parser.patterns import (
-    IdLevelState, dot_id_patterns, interp_inferred_section_pattern,
-    interp_reference_pattern, paren_id_patterns
+    IdLevelState,
+    dot_id_patterns,
+    interp_inferred_section_pattern,
+    interp_reference_pattern,
+    paren_id_patterns,
 )
 from wagtailregulations.parser.payload import CFR_TITLE, PayLoad
 from wagtailregulations.parser.regtable import RegTable
@@ -613,4 +618,3 @@ def run(*args):
         else:
             logger.info('parsing {} from local XML file'.format(args[0]))
             logger.info(ecfr_to_regdown(args[0], file_path=args[1]))
-

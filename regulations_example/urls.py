@@ -8,6 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from regulations_example.api import api_router
 
+
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
 
