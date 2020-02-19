@@ -5,7 +5,7 @@ import re
 from collections import OrderedDict
 from datetime import date
 from functools import partial
-from six.moves.urllib.parse import urljoin
+from urllib.parse import urljoin
 
 from django.db import models
 from django.http import Http404
@@ -13,6 +13,7 @@ from django.shortcuts import redirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
+import wagtail
 from wagtail.api import APIField
 
 from regdown import regdown
@@ -21,11 +22,11 @@ from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 from wagtailregulations.serializers import PartSerializer
 
 
-try:
+if wagtail.VERSION >= (2, 0):
     from wagtail.contrib.routable_page.models import RoutablePageMixin, route
     from wagtail.admin.edit_handlers import FieldPanel
     from wagtail.core.models import Page
-except ImportError:
+else:
     from wagtail.contrib.wagtailroutablepage.models import (
         RoutablePageMixin,
         route

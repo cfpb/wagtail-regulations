@@ -1,16 +1,19 @@
-try:
+from wagtailregulations.blocks import BaseRegulationsList
+from wagtailregulations.models import RegulationPage
+
+import wagtail
+
+
+if wagtail.VERSION >= (2, 0):
     from wagtail.contrib.routable_page.models import RoutablePage
     from wagtail.admin.edit_handlers import StreamFieldPanel
     from wagtail.core import blocks
     from wagtail.core.fields import StreamField
-except ImportError:
+else:
     from wagtail.contrib.wagtailroutablepage.models import RoutablePage
     from wagtail.wagtailadmin.edit_handlers import StreamFieldPanel
     from wagtail.wagtailcore import blocks
     from wagtail.wagtailcore.fields import StreamField
-
-from wagtailregulations.blocks import BaseRegulationsList
-from wagtailregulations.models import RegulationPage
 
 
 class TestRegulationLandingPage(RoutablePage):

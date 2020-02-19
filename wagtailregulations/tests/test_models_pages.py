@@ -8,6 +8,8 @@ from django.contrib.auth.models import AnonymousUser, User
 from django.http import Http404
 from django.test import RequestFactory
 
+import wagtail
+
 from regulations_example.models import (
     TestRegulationLandingPage,
     TestRegulationPage,
@@ -22,9 +24,9 @@ from wagtailregulations.models.pages import (
 from wagtailregulations.tests.utils import RegulationsTestCase
 
 
-try:
+if wagtail.VERSION >= (2, 0):
     from wagtail.core.models import Site
-except ImportError:
+else:
     from wagtail.wagtailcore.models import Site
 
 

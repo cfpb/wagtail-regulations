@@ -5,8 +5,8 @@ long_description = open('README.md', 'r').read()
 
 install_requires = [
     'python-dateutil>=2.8.0',
-    'regdown>=1.0',
-    'wagtail>=1.13,<2.8',
+    'regdown==1.0.2',
+    'wagtail>=1.13,<2.9',
     'wagtail-treemodeladmin>=1.0.0',
     'wagtail-copyablemodeladmin>=1.0.0',
 ]
@@ -37,7 +37,7 @@ setup(
         'Framework :: Django',
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',
-        'Framework :: Django :: 2.1',
+        'Framework :: Django :: 2.2',
         'Framework :: Wagtail',
         'Framework :: Wagtail :: 1',
         'Framework :: Wagtail :: 2',
@@ -45,6 +45,5 @@ setup(
         'License :: Public Domain',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
     ]
 )

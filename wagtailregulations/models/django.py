@@ -8,10 +8,12 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 
+import wagtail
 
-try:  # pragma: no cover
+
+if wagtail.VERSION >= (2, 0):
     from wagtail.admin.edit_handlers import FieldPanel
-except ImportError:  # pragma: no cover
+else:
     from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 
