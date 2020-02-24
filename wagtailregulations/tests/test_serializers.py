@@ -1,26 +1,26 @@
-from wagtailregulations.serializers import (
-    EffectiveVersionSerializer,
-    PartSerializer,
-    SectionSerializer,
-    SubpartSerializer,
-)
-from wagtailregulations.tests.utils import RegulationsTestCase
+# from wagtailregulations.serializers import (
+#     EffectiveVersionSerializer,
+#     PartSerializer,
+#     SectionSerializer,
+#     SubpartSerializer,
+# )
+# from wagtailregulations.tests.utils import RegulationsTestCase
 
 
 # class SerializersTestCase(RegulationsTestCase):
 
-    # def test_section_serialier(self):
-        # data = SectionSerializer(self.section_num4).data
-        # self.assertIn('html_contents', data)
+#    def test_section_serialier(self):
+#        data = SectionSerializer(self.section_num4).data
+#        self.assertIn('html_contents', data)
 
-    # def test_subpart_serialier(self):
-        # data = SubpartSerializer(self.subpart).data
-        # self.assertIn('sections', data)
+#    def test_subpart_serialier(self):
+#        data = SubpartSerializer(self.subpart).data
+#        self.assertIn('sections', data)
 
-    # def test_effective_version_serializer(self):
-        # data = EffectiveVersionSerializer(self.effective_version).data
-        # self.assertIn('subparts', data)
+#    def test_effective_version_serializer(self):
+#        data = EffectiveVersionSerializer(self.effective_version).data
+#        self.assertIn('subparts', data)
 
-    # def test_part_serializer(self):
-        # data = PartSerializer(self.part_1002).data
-        # self.assertIn('versions', data)
+#    def test_part_serializer(self):
+#        data = PartSerializer(self.part_1002).data
+#        self.assertIn('versions', data)
