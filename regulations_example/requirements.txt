@@ -9,6 +9,6 @@ lxml==4.4.2
 python-dateutil==2.8.1
 psycopg2>=2.7,<3.0
 wagtail-copyablemodeladmin==1.0.0
-wagtail-treemodeladmin>=1.0.4,<1.1
+wagtail-treemodeladmin==1.1.0
 regdown==1.0.2
 whitenoise==3.2.2
