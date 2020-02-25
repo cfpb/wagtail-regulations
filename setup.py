@@ -7,7 +7,7 @@ install_requires = [
     'python-dateutil>=2.8.0',
     'regdown==1.0.2',
     'wagtail>=1.13,<2.9',
-    'wagtail-treemodeladmin>=1.0.0',
+    'wagtail-treemodeladmin>=1.1.0',
     'wagtail-copyablemodeladmin>=1.0.0',
 ]
 
