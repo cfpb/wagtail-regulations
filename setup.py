@@ -1,12 +1,10 @@
 from setuptools import find_packages, setup
 
 
-long_description = open('README.md', 'r').read()
-
 install_requires = [
     'python-dateutil>=2.8.0',
     'regdown==1.0.2',
-    'wagtail>=1.13,<2.9',
+    'wagtail>=2.0,<2.9',
     'wagtail-treemodeladmin>=1.1.0',
     'wagtail-copyablemodeladmin>=1.0.0',
 ]
@@ -23,7 +21,7 @@ setup(
     author='CFPB',
     author_email='tech@cfpb.gov',
     description='Building blocks for interactive regulations in Wagtail',
-    long_description=long_description,
+    long_description=open('README.md', 'r').read(),
     long_description_content_type='text/markdown',
     license='CC0',
     version='1.1.0',
@@ -35,11 +33,8 @@ setup(
     },
     classifiers=[
         'Framework :: Django',
-        'Framework :: Django :: 1.11',
-        'Framework :: Django :: 2.0',
-        'Framework :: Django :: 2.2',
+        'Framework :: Django :: 2',
         'Framework :: Wagtail',
-        'Framework :: Wagtail :: 1',
         'Framework :: Wagtail :: 2',
         'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
         'License :: Public Domain',

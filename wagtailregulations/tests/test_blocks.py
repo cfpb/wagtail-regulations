@@ -1,7 +1,4 @@
-try:
-    from wagtail.core.models import Page, Site
-except ImportError:
-    from wagtail.wagtailcore.models import Page, Site
+from wagtail.core.models import Page, Site
 
 from regulations_example.models import (
     TestRegulationLandingPage,

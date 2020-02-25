@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.test import override_settings
 
-import wagtail
+from wagtail.core.models import Site
 
 from regdown import DEFAULT_RENDER_BLOCK_REFERENCE, regdown
 from regulations_example.models import (
@@ -16,12 +16,6 @@ from wagtailregulations.resolver import (
     resolve_reference,
 )
 from wagtailregulations.tests.utils import RegulationsTestCase
-
-
-if wagtail.VERSION >= (2, 0):
-    from wagtail.core.models import Site
-else:
-    from wagtail.wagtailcore.models import Site
 
 
 # Our setup and tests use as close to regulation examples as possible.

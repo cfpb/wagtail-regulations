@@ -15,8 +15,8 @@ Building blocks for interactive regulations in Wagtail.
 
 ## Dependencies
 
-- Django 1.11, 2.0, 2.2
-- Wagtail 1.13, 2.3, 2.8
+- Django 2.0, 2.2
+- Wagtail 2.3, 2.8
 - Python 3.6, 3.8
 
 ## Installation

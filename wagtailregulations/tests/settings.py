@@ -4,8 +4,6 @@ import os
 
 import django
 
-import wagtail
-
 
 ALLOWED_HOSTS = ['*']
 
@@ -35,60 +33,32 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
 )
 
-if wagtail.VERSION >= (2, 0):  # pragma: no cover
-    WAGTAIL_APPS = (
-        'wagtail.contrib.forms',
-        'wagtail.contrib.modeladmin',
-        'wagtail.contrib.settings',
-        'wagtail.tests.testapp',
-        'wagtail.admin',
-        'wagtail.core',
-        'wagtail.documents',
-        'wagtail.images',
-        'wagtail.sites',
-        'wagtail.users',
-        'wagtail.contrib.routable_page',
-    )
+WAGTAIL_APPS = (
+    'wagtail.contrib.forms',
+    'wagtail.contrib.modeladmin',
+    'wagtail.contrib.settings',
+    'wagtail.tests.testapp',
+    'wagtail.admin',
+    'wagtail.core',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.contrib.routable_page',
+)
 
-    WAGTAIL_MIDDLEWARE = (
-        'wagtail.core.middleware.SiteMiddleware',
-    )
+WAGTAIL_MIDDLEWARE = (
+    'wagtail.core.middleware.SiteMiddleware',
+)
 
-    WAGTAILADMIN_RICH_TEXT_EDITORS = {
-        'default': {
-            'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea'
-        },
-        'custom': {
-            'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
-        },
-    }
-else:  # pragma: no cover; fallback for Wagtail < 2.0
-    WAGTAIL_APPS = (
-        'wagtail.contrib.modeladmin',
-        'wagtail.contrib.settings',
-        'wagtail.tests.testapp',
-        'wagtail.wagtailadmin',
-        'wagtail.wagtailcore',
-        'wagtail.wagtaildocs',
-        'wagtail.wagtailforms',
-        'wagtail.wagtailimages',
-        'wagtail.wagtailsites',
-        'wagtail.wagtailusers',
-        'wagtail.contrib.wagtailroutablepage',
-    )
-
-    WAGTAIL_MIDDLEWARE = (
-        'wagtail.wagtailcore.middleware.SiteMiddleware',
-    )
-
-    WAGTAILADMIN_RICH_TEXT_EDITORS = {
-        'default': {
-            'WIDGET': 'wagtail.wagtailadmin.rich_text.HalloRichTextArea',
-        },
-        'custom': {
-            'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
-        },
-    }
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea'
+    },
+    'custom': {
+        'WIDGET': 'wagtail.tests.testapp.rich_text.CustomRichTextArea'
+    },
+}
 
 if django.VERSION >= (1, 10):  # pragma: no cover
     MIDDLEWARE = (

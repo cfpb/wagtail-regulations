@@ -13,26 +13,15 @@ from django.shortcuts import redirect
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
 
-import wagtail
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.api import APIField
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.core.models import Page
 
 from regdown import regdown
 from wagtailregulations.models import Part, Section
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 from wagtailregulations.serializers import PartSerializer
-
-
-if wagtail.VERSION >= (2, 0):
-    from wagtail.contrib.routable_page.models import RoutablePageMixin, route
-    from wagtail.admin.edit_handlers import FieldPanel
-    from wagtail.core.models import Page
-else:
-    from wagtail.contrib.wagtailroutablepage.models import (
-        RoutablePageMixin,
-        route
-    )
-    from wagtail.wagtailadmin.edit_handlers import FieldPanel
-    from wagtail.wagtailcore.models import Page
 
 
 logger = logging.getLogger(__name__)
