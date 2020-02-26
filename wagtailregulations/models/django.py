@@ -5,7 +5,6 @@ from datetime import date
 
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 
 from wagtail.admin.edit_handlers import FieldPanel
@@ -77,7 +76,6 @@ class Part(models.Model):
         return effective_version
 
 
-@python_2_unicode_compatible
 class EffectiveVersion(models.Model):
     authority = models.CharField(max_length=255, blank=True)
     source = models.CharField(max_length=255, blank=True)
@@ -142,7 +140,6 @@ class EffectiveVersion(models.Model):
         default_related_name = 'version'
 
 
-@python_2_unicode_compatible
 class Subpart(models.Model):
     label = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255, blank=True)
@@ -191,7 +188,6 @@ class Subpart(models.Model):
         ordering = ['subpart_type', 'label']
 
 
-@python_2_unicode_compatible
 class Section(models.Model):
     label = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=255, blank=True)
