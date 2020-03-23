@@ -5,14 +5,9 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 
-try:
-    from wagtail.contrib.routable_page.models import RoutablePageMixin
-    from wagtail.core import blocks
-    from wagtail.core import fields
-except ImportError:
-    from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin
-    from wagtail.wagtailcore import blocks
-    from wagtail.wagtailcore import fields
+from wagtail.contrib.routable_page.models import RoutablePageMixin
+from wagtail.core import blocks
+from wagtail.core import fields
 
 
 class Migration(migrations.Migration):

@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 
 from django.test import override_settings
 
+from wagtail.core.models import Site
+
 from regdown import DEFAULT_RENDER_BLOCK_REFERENCE, regdown
 from regulations_example.models import (
     TestRegulationLandingPage,
@@ -14,12 +16,6 @@ from wagtailregulations.resolver import (
     resolve_reference,
 )
 from wagtailregulations.tests.utils import RegulationsTestCase
-
-
-try:
-    from wagtail.core.models import Site
-except ImportError:
-    from wagtail.wagtailcore.models import Site
 
 
 # Our setup and tests use as close to regulation examples as possible.
