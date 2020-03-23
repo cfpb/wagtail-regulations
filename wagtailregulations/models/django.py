@@ -11,7 +11,7 @@ from django.utils.functional import cached_property
 from wagtail.admin.edit_handlers import FieldPanel
 
 
-def sortable_label(label, separator='-'):
+def sortable_label(label, separator="-"):
     """ Create a sortable tuple out of a label.
     Converts a dashed label into a tuple based on the following rules:
         - If a segment is numeric, it will get three leading zero places
@@ -43,11 +43,11 @@ class Part(models.Model):
     short_name = models.CharField(max_length=255, blank=True)
 
     panels = [
-        FieldPanel('cfr_title_number'),
-        FieldPanel('title'),
-        FieldPanel('part_number'),
-        FieldPanel('short_name'),
-        FieldPanel('chapter'),
+        FieldPanel("cfr_title_number"),
+        FieldPanel("title"),
+        FieldPanel("part_number"),
+        FieldPanel("short_name"),
+        FieldPanel("chapter"),
     ]
 
     @property
@@ -61,19 +61,18 @@ class Part(models.Model):
         return name
 
     class Meta:
-        ordering = ['part_number']
+        ordering = ["part_number"]
 
     @cached_property
     def effective_version(self):
         """ Return the current effective version of the regulation.
         This selects based on effective_date being less than or equal to
         the current date and version is not a draft. """
-        effective_version = self.versions.filter(
-            draft=False,
-            effective_date__lte=date.today()
-        ).order_by(
-            '-effective_date'
-        ).first()
+        effective_version = (
+            self.versions.filter(draft=False, effective_date__lte=date.today())
+            .order_by("-effective_date")
+            .first()
+        )
         return effective_version
 
 
@@ -89,12 +88,12 @@ class EffectiveVersion(models.Model):
     )
 
     panels = [
-        FieldPanel('authority'),
-        FieldPanel('source'),
-        FieldPanel('effective_date'),
-        FieldPanel('part'),
-        FieldPanel('draft'),
-        FieldPanel('created'),
+        FieldPanel("authority"),
+        FieldPanel("source"),
+        FieldPanel("effective_date"),
+        FieldPanel("part"),
+        FieldPanel("draft"),
+        FieldPanel("created"),
     ]
 
     def __str__(self):
@@ -107,12 +106,12 @@ class EffectiveVersion(models.Model):
     @property
     def status(self):
         if self.live_version:
-            return 'LIVE'
+            return "LIVE"
         if self.draft is True:
-            return 'Unapproved draft'
+            return "Unapproved draft"
         if self.effective_date >= date.today():
-            return 'Future version'
-        return 'Previous version'
+            return "Future version"
+        return "Previous version"
 
     def validate_unique(self, exclude=None):
         super(EffectiveVersion, self).validate_unique(exclude=exclude)
@@ -130,16 +129,18 @@ class EffectiveVersion(models.Model):
             )
 
         if versions_with_this_date.count() > 0:
-            raise ValidationError({
-                'effective_date': [
-                    'The part selected below already has an effective version '
-                    'with this date.'
-                ]
-            })
+            raise ValidationError(
+                {
+                    "effective_date": [
+                        "The part selected below already has an effective "
+                        "version with this date."
+                    ]
+                }
+            )
 
     class Meta:
-        ordering = ['effective_date']
-        default_related_name = 'version'
+        ordering = ["effective_date"]
+        default_related_name = "version"
 
 
 @python_2_unicode_compatible
@@ -154,20 +155,19 @@ class Subpart(models.Model):
     APPENDIX = 1000
     INTERPRETATION = 2000
     SUBPART_TYPE_CHOICES = (
-        (BODY, 'Regulation Body'),
-        (APPENDIX, 'Appendix'),
-        (INTERPRETATION, 'Interpretation'),
+        (BODY, "Regulation Body"),
+        (APPENDIX, "Appendix"),
+        (INTERPRETATION, "Interpretation"),
     )
     subpart_type = models.IntegerField(
-        choices=SUBPART_TYPE_CHOICES,
-        default=BODY,
+        choices=SUBPART_TYPE_CHOICES, default=BODY,
     )
 
     panels = [
-        FieldPanel('label'),
-        FieldPanel('title'),
-        FieldPanel('subpart_type'),
-        FieldPanel('version'),
+        FieldPanel("label"),
+        FieldPanel("title"),
+        FieldPanel("subpart_type"),
+        FieldPanel("version"),
     ]
 
     def __str__(self):
@@ -176,19 +176,20 @@ class Subpart(models.Model):
     @property
     def subpart_heading(self):
         """Keeping for now as possible hook into secondary nav"""
-        return ''
+        return ""
 
     @property
     def section_range(self):
         if self.subpart_type != Subpart.BODY or not self.sections.exists():
-            return ''
+            return ""
 
         sections = self.sections.all()
         return "{}–{}".format(
-            sections[0].numeric_label, sections.reverse()[0].numeric_label)
+            sections[0].numeric_label, sections.reverse()[0].numeric_label
+        )
 
     class Meta:
-        ordering = ['subpart_type', 'label']
+        ordering = ["subpart_type", "label"]
 
 
 @python_2_unicode_compatible
@@ -202,20 +203,20 @@ class Section(models.Model):
     sortable_label = models.CharField(max_length=255)
 
     panels = [
-        FieldPanel('label'),
-        FieldPanel('subpart'),
-        FieldPanel('title'),
-        FieldPanel('contents', classname="full"),
+        FieldPanel("label"),
+        FieldPanel("subpart"),
+        FieldPanel("title"),
+        FieldPanel("contents", classname="full"),
     ]
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ['sortable_label']
+        ordering = ["sortable_label"]
 
     def save(self, **kwargs):
-        self.sortable_label = '-'.join(sortable_label(self.label))
+        self.sortable_label = "-".join(sortable_label(self.label))
         super(Section, self).save(**kwargs)
 
     @cached_property
@@ -229,13 +230,13 @@ class Section(models.Model):
     @property
     def numeric_label(self):
         if self.label.isdigit():
-            return '\xa7\xa0{}.{}'.format(self.part, int(self.label))
+            return "\xa7\xa0{}.{}".format(self.part, int(self.label))
         else:
-            return ''
+            return ""
 
     @property
     def title_content(self):
         if self.numeric_label:
-            return self.title.replace(self.numeric_label, '').strip()
+            return self.title.replace(self.numeric_label, "").strip()
         else:
             return self.title

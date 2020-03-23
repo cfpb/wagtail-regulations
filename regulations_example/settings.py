@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c6u0-9c!7nilj_ysatsda0(f@e_2mws2f!6m0n^o*4#*q#kzp)'
+SECRET_KEY = "c6u0-9c!7nilj_ysatsda0(f@e_2mws2f!6m0n^o*4#*q#kzp)"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,87 +30,80 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'regulations_example',
-    'wagtailregulations',
-    'treemodeladmin',
-
-    'wagtail.contrib.search_promotions',
-    'wagtail.contrib.forms',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail.api.v2',
-    'wagtail.contrib.modeladmin',
-    'wagtail.contrib-.routable_page',
-    'wagtail.core',
-
-    'django_extensions',
-    'rest_framework',
-    'modelcluster',
-    'taggit',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sitemaps',
+    "regulations_example",
+    "wagtailregulations",
+    "treemodeladmin",
+    "wagtail.contrib.search_promotions",
+    "wagtail.contrib.forms",
+    "wagtail.contrib.redirects",
+    "wagtail.embeds",
+    "wagtail.sites",
+    "wagtail.users",
+    "wagtail.snippets",
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.search",
+    "wagtail.admin",
+    "wagtail.api.v2",
+    "wagtail.contrib.modeladmin",
+    "wagtail.contrib.routable_page",
+    "wagtail.core",
+    "django_extensions",
+    "rest_framework",
+    "modelcluster",
+    "taggit",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
-
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "wagtail.core.middleware.SiteMiddleware",
+    "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-ROOT_URLCONF = 'regulations_example.urls'
+ROOT_URLCONF = "regulations_example.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['regulations_example/templates', ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": ["regulations_example/templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'regulations_example.wsgi.application'
+WSGI_APPLICATION = "regulations_example.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=500)
-}
+DATABASES = {"default": dj_database_url.config(conn_max_age=500)}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -123,26 +116,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(PROJECT_DIR, "static"),
 ]
 
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'collect_static')
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, "collect_static")
+STATIC_URL = "/static/"
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(PROJECT_DIR, "media")
+MEDIA_URL = "/media/"
 
 # Use Elasticsearch as the search backend for extra performance and better
 # search results
 WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.db',
-        'INDEX': 'regulations_example',
+    "default": {
+        "BACKEND": "wagtail.search.backends.db",
+        "INDEX": "regulations_example",
     },
 }
 
@@ -150,39 +143,43 @@ WAGTAILSEARCH_BACKENDS = {
 WAGTAIL_SITE_NAME = "regulations_example"
 
 # Make sure Django can detect a secure connection properly on Heroku:
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Redirect all requests to HTTPS
-SECURE_SSL_REDIRECT = os.getenv('DJANGO_SECURE_SSL_REDIRECT', 'off') == 'on'
+SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT", "off") == "on"
 
 # Accept all hostnames, since we don't know in advance which hostname will be
 # used for any given Heroku instance.
 # IMPORTANT: Set this to a real hostname when using this in production!
 # See https://docs.djangoproject.com/en/1.10/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '*').split(';')
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(";")
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # BASE_URL required for notification emails
-BASE_URL = 'http://localhost:8000'
+BASE_URL = "http://localhost:8000"
 
 # Configure Elasticsearch, if present in os.environ
-ELASTICSEARCH_ENDPOINT = os.getenv('ELASTICSEARCH_ENDPOINT', '')
+ELASTICSEARCH_ENDPOINT = os.getenv("ELASTICSEARCH_ENDPOINT", "")
 
 if ELASTICSEARCH_ENDPOINT:
     from elasticsearch import RequestsHttpConnection
+
     WAGTAILSEARCH_BACKENDS = {
-        'default': {
-            'BACKEND': 'wagtail.search.backends.elasticsearch2',
-            'HOSTS': [{
-                'host': ELASTICSEARCH_ENDPOINT,
-                'port': int(os.getenv('ELASTICSEARCH_PORT', '9200')),
-                'use_ssl': os.getenv('ELASTICSEARCH_USE_SSL', 'off') == 'on',
-                'verify_certs': os.getenv(
-                    'ELASTICSEARCH_VERIFY_CERTS', 'off') == 'on',
-            }],
-            'OPTIONS': {
-                'connection_class': RequestsHttpConnection,
-            },
+        "default": {
+            "BACKEND": "wagtail.search.backends.elasticsearch2",
+            "HOSTS": [
+                {
+                    "host": ELASTICSEARCH_ENDPOINT,
+                    "port": int(os.getenv("ELASTICSEARCH_PORT", "9200")),
+                    "use_ssl": os.getenv("ELASTICSEARCH_USE_SSL", "off")
+                    == "on",
+                    "verify_certs": os.getenv(
+                        "ELASTICSEARCH_VERIFY_CERTS", "off"
+                    )
+                    == "on",
+                }
+            ],
+            "OPTIONS": {"connection_class": RequestsHttpConnection},
         }
     }

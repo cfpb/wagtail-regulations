@@ -7,11 +7,7 @@ from wagtailregulations.models import Section
 
 
 DEFAULT_REGULATIONS_REFERENCE_MAPPING = [
-    (
-        r'(?P<section>[\w]+)-(?P<paragraph>[\w-]*)',
-        '{section}',
-        '{paragraph}'
-    ),
+    (r"(?P<section>[\w]+)-(?P<paragraph>[\w-]*)", "{section}", "{paragraph}"),
 ]
 
 
@@ -22,8 +18,8 @@ def resolve_reference(reference):
     not containing that reference """
     reference_mapping = getattr(
         settings,
-        'REGULATIONS_REFERENCE_MAPPING',
-        DEFAULT_REGULATIONS_REFERENCE_MAPPING
+        "REGULATIONS_REFERENCE_MAPPING",
+        DEFAULT_REGULATIONS_REFERENCE_MAPPING,
     )
 
     for reference_map in reference_mapping:
@@ -42,20 +38,16 @@ def get_contents_resolver(effective_version):
     This constructs a contents_resolver that will resolve references and
     return their contents for all sections that are part of the current
     EffectiveVersion served by the given page. """
-    section_query = Section.objects.filter(
-        subpart__version=effective_version
-    )
+    section_query = Section.objects.filter(subpart__version=effective_version)
 
     def contents_resolver(reference):
         dest_section_label, dest_paragraph_label = resolve_reference(reference)
         try:
             dest_section = section_query.get(label=dest_section_label)
         except Section.DoesNotExist:
-            return ''
+            return ""
         dest_paragraph = extract_labeled_paragraph(
-            dest_paragraph_label,
-            dest_section.contents,
-            exact=False
+            dest_paragraph_label, dest_section.contents, exact=False
         )
         return dest_paragraph
 
@@ -70,18 +62,15 @@ def get_url_resolver(page, date_str=None):
 
     section_kwargs = {}
     if date_str is not None:
-        section_kwargs['date_str'] = date_str
+        section_kwargs["date_str"] = date_str
 
     def url_resolver(reference):
         dest_section_label, dest_paragraph_label = resolve_reference(reference)
-        section_kwargs['section_label'] = dest_section_label
-        return '{page_url}{section_url}#{paragraph_label}'.format(
+        section_kwargs["section_label"] = dest_section_label
+        return "{page_url}{section_url}#{paragraph_label}".format(
             page_url=page.url,
-            section_url=page.reverse_subpage(
-                'section',
-                kwargs=section_kwargs
-            ),
-            paragraph_label=dest_paragraph_label
+            section_url=page.reverse_subpage("section", kwargs=section_kwargs),
+            paragraph_label=dest_paragraph_label,
         )
 
     return url_resolver

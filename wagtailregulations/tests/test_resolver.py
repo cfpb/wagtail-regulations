@@ -24,49 +24,43 @@ from wagtailregulations.tests.utils import RegulationsTestCase
 @override_settings(
     REGULATIONS_REFERENCE_MAPPING=[
         (
-            r'(?P<label>(?P<section>[\w]+))-(?P<paragraph>[\w-]*-Interp)',
-            'Interp-{section}',
-            '{paragraph}'
+            r"(?P<label>(?P<section>[\w]+))-(?P<paragraph>[\w-]*-Interp)",
+            "Interp-{section}",
+            "{paragraph}",
         )
     ]
 )
 class ReferenceResolutionTestCase(RegulationsTestCase):
-
     def setUp(self):
         super().setUp()
 
         self.site = Site.objects.get(is_default_site=True)
 
         self.landing_page = TestRegulationLandingPage(
-            title='Regulations',
-            slug='reg-landing'
+            title="Regulations", slug="reg-landing"
         )
         self.site.root_page.add_child(instance=self.landing_page)
         self.landing_page.save_revision().publish()
 
         self.reg_page = TestRegulationPage(
-            regulation=self.part_1002,
-            title='Reg B',
-            slug='1002'
+            regulation=self.part_1002, title="Reg B", slug="1002"
         )
         self.landing_page.add_child(instance=self.reg_page)
         self.reg_page.save_revision().publish()
 
         self.reg_page_1030 = TestRegulationPage(
-            regulation=self.part_1030,
-            title='Reg C',
-            slug='1030'
+            regulation=self.part_1030, title="Reg C", slug="1030"
         )
         self.landing_page.add_child(instance=self.reg_page_1030)
         self.reg_page_1030.save_revision()
 
     def test_resolve_reference(self):
-        section, paragraph = resolve_reference('2-c-Interp')
-        self.assertEqual(section, 'Interp-2')
-        self.assertEqual(paragraph, 'c-Interp')
+        section, paragraph = resolve_reference("2-c-Interp")
+        self.assertEqual(section, "Interp-2")
+        self.assertEqual(paragraph, "c-Interp")
 
     def test_resolve_reference_no_match(self):
-        section, paragraph = resolve_reference('foo')
+        section, paragraph = resolve_reference("foo")
         self.assertIsNone(section)
         self.assertIsNone(paragraph)
 
@@ -77,9 +71,9 @@ class ReferenceResolutionTestCase(RegulationsTestCase):
         result = regdown(
             self.section_num2.contents,
             contents_resolver=contents_resolver,
-            render_block_reference=DEFAULT_RENDER_BLOCK_REFERENCE
+            render_block_reference=DEFAULT_RENDER_BLOCK_REFERENCE,
         )
-        self.assertIn('Interpreting adverse action', result)
+        self.assertIn("Interpreting adverse action", result)
 
     def test_get_contents_resolver_reference_doesnt_exist(self):
         contents_resolver = get_contents_resolver(
@@ -88,15 +82,15 @@ class ReferenceResolutionTestCase(RegulationsTestCase):
         result = regdown(
             self.section_num3.contents,
             contents_resolver=contents_resolver,
-            render_block_reference=DEFAULT_RENDER_BLOCK_REFERENCE
+            render_block_reference=DEFAULT_RENDER_BLOCK_REFERENCE,
         )
         self.assertEqual(
             result,
             '<p class="regdown-block level-0" data-label="b" id="b">'
-            'Securities credit.</p>'
+            "Securities credit.</p>",
         )
 
     def test_get_url_resolver(self):
         url_resolver = get_url_resolver(self.reg_page)
-        result = url_resolver('2-c-Interp')
-        self.assertEqual(result, '/reg-landing/1002/Interp-2/#c-Interp')
+        result = url_resolver("2-c-Interp")
+        self.assertEqual(result, "/reg-landing/1002/Interp-2/#c-Interp")

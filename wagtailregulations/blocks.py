@@ -10,7 +10,7 @@ from wagtailregulations.models.django import EffectiveVersion
 
 
 class BaseRegulationsList(blocks.StructBlock):
-    ordering = 'title'
+    ordering = "title"
 
     def __init__(self, model, *args, **kwargs):
         self.model = model
@@ -35,30 +35,30 @@ class BaseRegulationsList(blocks.StructBlock):
             qs = qs.order_by(*ordering)
 
         future_versions_qs = EffectiveVersion.objects.filter(
-            draft=False,
-            effective_date__gte=date.today()
+            draft=False, effective_date__gte=date.today()
         )
         qs = qs.prefetch_related(
             Prefetch(
-                'regulation__versions',
+                "regulation__versions",
                 queryset=future_versions_qs,
-                to_attr='future_versions'
+                to_attr="future_versions",
             )
         )
         return qs
 
     def get_context(self, value, parent_context=None):
-        context = super().get_context(
-            value, parent_context=parent_context
-        )
-        context['regulations'] = self.get_queryset(value)
+        context = super().get_context(value, parent_context=parent_context)
+        context["regulations"] = self.get_queryset(value)
         return context
 
     def render_basic(self, value, context=None):
-        return format_html('<ul>'.join(
-            f'<li><a href="{regulation.url}">{regulation.title}</a></li>'
-            for regulation in self.get_queryset(value)
-        ) + '</ul>')
+        return format_html(
+            "<ul>".join(
+                f'<li><a href="{regulation.url}">{regulation.title}</a></li>'
+                for regulation in self.get_queryset(value)
+            )
+            + "</ul>"
+        )
 
     class Meta:
-        icon = 'list-ul'
+        icon = "list-ul"

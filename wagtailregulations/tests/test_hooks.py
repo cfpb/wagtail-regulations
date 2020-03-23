@@ -16,32 +16,31 @@ from wagtailregulations.models.django import (
 
 
 class TestRegs3kHooks(TestCase, WagtailTestUtils):
-
     def setUp(self):
         self.part_1002 = mommy.make(
             Part,
-            part_number='1002',
-            title='Equal Credit Opportunity Act',
-            short_name='Regulation B',
-            chapter='X'
+            part_number="1002",
+            title="Equal Credit Opportunity Act",
+            short_name="Regulation B",
+            chapter="X",
         )
         self.effective_version = mommy.make(
             EffectiveVersion,
             effective_date=date(2014, 1, 18),
-            part=self.part_1002
+            part=self.part_1002,
         )
         self.subpart = mommy.make(
             Subpart,
-            label='Subpart General',
-            title='General',
+            label="Subpart General",
+            title="General",
             subpart_type=Subpart.BODY,
-            version=self.effective_version
+            version=self.effective_version,
         )
         self.section_num4 = mommy.make(
             Section,
-            label='4',
-            title='\xa7\xa01002.4 General rules.',
-            contents='{a}\n(a) Regdown paragraph a.\n',
+            label="4",
+            title="\xa7\xa01002.4 General rules.",
+            contents="{a}\n(a) Regdown paragraph a.\n",
             subpart=self.subpart,
         )
 
@@ -53,44 +52,45 @@ class TestRegs3kHooks(TestCase, WagtailTestUtils):
         )
         self.draft_subpart = mommy.make(
             Subpart,
-            label='Subpart General',
-            title='General',
+            label="Subpart General",
+            title="General",
             subpart_type=Subpart.BODY,
-            version=self.draft_effective_version
+            version=self.draft_effective_version,
         )
         self.draft_section_num4 = mommy.make(
             Section,
-            label='4',
-            title='\xa7\xa01002.4 General rules.',
-            contents='{a}\n(a) Regdown paragraph a.\n',
+            label="4",
+            title="\xa7\xa01002.4 General rules.",
+            contents="{a}\n(a) Regdown paragraph a.\n",
             subpart=self.draft_subpart,
         )
 
         self.login()
 
     def test_part_model_admin(self):
-        response = self.client.get('/admin/wagtailregulations/part/')
+        response = self.client.get("/admin/wagtailregulations/part/")
         self.assertEqual(response.status_code, 200)
 
     def test_effectiveversion_model_admin(self):
         response = self.client.get(
-            '/admin/wagtailregulations/effectiveversion/'
+            "/admin/wagtailregulations/effectiveversion/"
         )
         self.assertEqual(response.status_code, 200)
 
     def test_subpart_model_admin(self):
-        response = self.client.get('/admin/wagtailregulations/subpart/')
+        response = self.client.get("/admin/wagtailregulations/subpart/")
         self.assertEqual(response.status_code, 200)
 
     def test_section_model_admin(self):
-        response = self.client.get('/admin/wagtailregulations/section/')
+        response = self.client.get("/admin/wagtailregulations/section/")
         self.assertEqual(response.status_code, 200)
 
     def test_section_model_admin_no_preview_button(self):
-        response = self.client.get('/admin/wagtailregulations/section/')
+        response = self.client.get("/admin/wagtailregulations/section/")
         self.assertEqual(response.status_code, 200)
-        self.assertNotIn(b'View live', response.content)
-        self.assertNotIn(b'View draft', response.content)
+        self.assertNotIn(b"View live", response.content)
+        self.assertNotIn(b"View draft", response.content)
+
 
 #     def test_section_model_admin_has_preview_button(self):
 #         reg_page = RegulationPage(

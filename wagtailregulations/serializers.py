@@ -10,11 +10,11 @@ class SectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Section
         fields = (
-            'label',
-            'subpart',
-            'title',
-            'contents',
-            'html_contents',
+            "label",
+            "subpart",
+            "title",
+            "contents",
+            "html_contents",
         )
 
     def get_html_contents(self, section):
@@ -35,11 +35,11 @@ class SubpartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subpart
         fields = (
-            'label',
-            'title',
-            'subpart_type',
-            'version',
-            'sections',
+            "label",
+            "title",
+            "subpart_type",
+            "version",
+            "sections",
         )
 
 
@@ -49,13 +49,13 @@ class EffectiveVersionSerializer(serializers.ModelSerializer):
     class Meta:
         model = EffectiveVersion
         fields = (
-            'authority',
-            'source',
-            'effective_date',
-            'part',
-            'draft',
-            'created',
-            'subparts',
+            "authority",
+            "source",
+            "effective_date",
+            "part",
+            "draft",
+            "created",
+            "subparts",
         )
 
 
@@ -65,10 +65,10 @@ class PartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Part
         fields = (
-            'cfr_title_number',
-            'chapter',
-            'part_number',
-            'short_name',
-            'chapter',
-            'versions',
+            "cfr_title_number",
+            "chapter",
+            "part_number",
+            "short_name",
+            "chapter",
+            "versions",
         )

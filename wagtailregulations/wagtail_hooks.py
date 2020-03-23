@@ -55,43 +55,37 @@ class TreeCopyInstanceView(TreeViewParentMixin, CopyInstanceView):
 
 class SectionModelAdmin(TreeModelAdmin):
     model = Section
-    menu_label = 'Regulation section content'
-    menu_icon = 'list-ul'
+    menu_label = "Regulation section content"
+    menu_icon = "list-ul"
     list_display = (
-        'label', 'title',
+        "label",
+        "title",
     )
-    search_fields = (
-        'label', 'title')
-    parent_field = 'subpart'
+    search_fields = ("label", "title")
+    parent_field = "subpart"
     # TODO: When we import Pages
     # index_view_class = SectionPreviewIndexView
 
 
 class SubpartModelAdmin(TreeModelAdmin):
     model = Subpart
-    menu_label = 'Regulation subpart'
-    menu_icon = 'list-ul'
-    list_display = (
-        'title',
-        'section_range'
-    )
-    child_field = 'sections'
+    menu_label = "Regulation subpart"
+    menu_icon = "list-ul"
+    list_display = ("title", "section_range")
+    child_field = "sections"
     child_model_admin = SectionModelAdmin
-    parent_field = 'version'
-    ordering = ['subpart_type', 'title']
+    parent_field = "version"
+    ordering = ["subpart_type", "title"]
 
 
 class EffectiveVersionModelAdmin(CopyableModelAdminMixin, TreeModelAdmin):
     model = EffectiveVersion
-    menu_label = 'Regulation effective versions'
-    menu_icon = 'list-ul'
-    list_display = (
-        'effective_date',
-        'status',
-        'created')
-    child_field = 'subparts'
+    menu_label = "Regulation effective versions"
+    menu_icon = "list-ul"
+    list_display = ("effective_date", "status", "created")
+    child_field = "subparts"
     child_model_admin = SubpartModelAdmin
-    parent_field = 'part'
+    parent_field = "part"
     button_helper_class = TreeCopyButtonHelper
     copy_view_class = TreeCopyInstanceView
 
@@ -127,12 +121,8 @@ class EffectiveVersionModelAdmin(CopyableModelAdminMixin, TreeModelAdmin):
 @modeladmin_register
 class PartModelAdmin(TreeModelAdmin):
     model = Part
-    menu_label = 'Regulations'
-    menu_icon = 'list-ul'
-    list_display = (
-        'part_number',
-        'title',
-        'short_name'
-    )
-    child_field = 'versions'
+    menu_label = "Regulations"
+    menu_icon = "list-ul"
+    list_display = ("part_number", "title", "short_name")
+    child_field = "versions"
     child_model_admin = EffectiveVersionModelAdmin
