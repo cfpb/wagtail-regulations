@@ -1,0 +1,50 @@
+.level-0 {
+    padding-left: 0;
+}
+
+.level-1,
+.level-1 + .usa-accordion {
+    padding-left: 2em;
+}
+
+.level-2,
+.level-2 + .usa-accordion {
+    padding-left: 4em;
+}
+
+.level-3,
+.level-3 + .usa-accordion {
+    padding-left: 6em;
+}
+
+.level-4,
+.level-4 + .usa-accordion {
+    padding-left: 8em;
+}
+
+.level-5,
+.level-5 + .usa-accordion {
+    padding-left: 10em;
+}
+
+.level-6,
+.level-6 + .usa-accordion {
+    padding-left: 12em;
+}
+
+.reg-pagination {
+    margin-top: 2em;
+}
+
+.reg-pagination-column + .reg-pagination-column {
+    text-align: right;
+}
+
+.reg-pagination-link {
+    border-top: 2px solid #ccc;
+    padding-top: 1em;
+}
+
+.reg-pagination-title {
+    font-weight: bold;
+}

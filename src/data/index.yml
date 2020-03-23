@@ -1,0 +1,11 @@
+page: index
+callout:
+  title: Interactive Regulations
+  text: A resource that makes certain Federal regulations easier to read, navigate, and understand.
+  cta:
+    text: Call to action
+    link: '/'
+tagline:
+  title: Title XII Banks and Banking
+  content:
+    - Title XII Banks and Banking is one of the titles in the United States Code of Federal Regulations (CFR). The regulations implemented by the Bureau are housed in Chapter X of Title XII of the CFR.

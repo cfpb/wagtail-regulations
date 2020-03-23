@@ -81,8 +81,12 @@ The frontend serves the regulation content and search to end users.
 This repository comes with the Wagtail library to build an interative federal 
 regulations website as well as a functioning example of how to do so. 
 
-The example is broken into a Wagtail-based REST API and a Gatsy-based 
-front-end using the US Web Design System v2.0 that consumes that API.
+The example is broken into a Django/Wagtail-based REST API and a front-end 
+using [Gatsby](https://www.gatsbyjs.org/) and 
+[US Web Design System v2.0](https://v2.designsystem.digital.gov/) static site 
+with [Federalist](https://federalist.18f.gov/) 
+(based on [the template from 18F](https://github.com/18F/federalist-uswds-gatsby)) 
+that consumes that API.
 
 #### API
 
@@ -102,6 +106,16 @@ docker-compose run app /venv/bin/python manage.py loaddata sample_data.json
 
 The regulation data should then be available at http://localhost:8000/api/v2/pages/4
 
+
+#### Front-end
+
+The front-end can be run using:
+
+- `npm install`
+- `npm run develop` and the site will be viewable at localhost:8000
+- `npm run build` builds the static site and assets in the `public/` directory
+- `npm run serve` serves the built static files at `http://localhost:9000`
+- `npm run clean` removes the built static file directories `.cache/` and `public/`
 
 ## Getting help
 
