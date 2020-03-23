@@ -24,7 +24,6 @@ Building blocks for interactive regulations in Wagtail.
 
 ## Usage
 
-
 ### Components
 
 Wagtail Regulations provides the building blocks to create and serve 
@@ -79,6 +78,29 @@ The frontend serves the regulation content and search to end users.
 
 ### Putting it all together
 
+This repository comes with the Wagtail library to build an interative federal 
+regulations website as well as a functioning example of how to do so. 
+
+The example is broken into a Wagtail-based REST API and a Gatsy-based 
+front-end using the US Web Design System v2.0 that consumes that API.
+
+#### API
+
+The API can be run using 
+[Docker](https://docs.docker.com/engine/installation/) with 
+[Docker Compose](https://docs.docker.com/compose/install/):
+
+```
+docker-compose up
+```
+
+To load example regulation data with the necessary Wagtail pages:
+
+```
+docker-compose run app /venv/bin/python manage.py loaddata sample_data.json
+```
+
+The regulation data should then be available at http://localhost:8000/api/v2/pages/4
 
 
 ## Getting help

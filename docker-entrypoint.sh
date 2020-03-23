@@ -8,4 +8,6 @@ done
 
 >&2 echo "Postgres is up - continuing"
 
+/venv/bin/python manage.py migrate --noinput
+
 exec "$@"
