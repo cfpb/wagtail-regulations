@@ -20,7 +20,7 @@ class SectionSerializer(serializers.ModelSerializer):
     def get_html_contents(self, section):
         effective_version = section.subpart.version
         date_str = str(effective_version.effective_date)
-        page = section.subpart.version.part.page
+        page = section.subpart.version.part.page.first()
         html_contents = regdown(
             section.contents,
             url_resolver=get_url_resolver(page, date_str=date_str),
