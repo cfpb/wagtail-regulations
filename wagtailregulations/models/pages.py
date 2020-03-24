@@ -17,9 +17,9 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.models import Page
 
 from regdown import regdown
+from wagtailregulations.api.serializers import PartSerializer
 from wagtailregulations.models import Part, Section
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
-from wagtailregulations.api.serializers import PartSerializer
 
 
 logger = logging.getLogger(__name__)

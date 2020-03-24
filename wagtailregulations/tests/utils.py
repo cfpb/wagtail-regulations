@@ -11,8 +11,8 @@ from wagtailregulations.models.django import (
 )
 
 
-class RegulationsTestCase(TestCase):
-    def setUp(self):
+class RegulationsTestData(object):
+    def setUp_regulations(self):
         self.part_1002 = mommy.make(
             Part,
             cfr_title_number="12",
@@ -151,3 +151,8 @@ class RegulationsTestCase(TestCase):
             contents="{c-Interp}\nInterpreting adverse action\n\n",
             subpart=self.subpart_interps,
         )
+
+
+class RegulationsTestCase(TestCase, RegulationsTestData):
+    def setUp(self):
+        self.setUp_regulations()
