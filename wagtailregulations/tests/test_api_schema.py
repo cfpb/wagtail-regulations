@@ -65,6 +65,7 @@ class SchemaTestCase(GraphQLTestCase, RegulationsTestData):
                                     label
                                     title
                                     contents
+                                    renderedContents
                                 }
                             }
                         }
