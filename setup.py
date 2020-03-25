@@ -9,6 +9,7 @@ install_requires = [
     "wagtail>=1.13,<2.8",
     "wagtail-treemodeladmin>=1.0.0",
     "wagtail-copyablemodeladmin>=1.0.0",
+    "graphene-django>=2.2,<3",
 ]
 
 testing_extras = [

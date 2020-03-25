@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sitemaps",
+    "graphene_django",
 ]
 
 MIDDLEWARE = [
@@ -183,3 +184,11 @@ if ELASTICSEARCH_ENDPOINT:
             "OPTIONS": {"connection_class": RequestsHttpConnection},
         }
     }
+
+REGULATIONS_REFERENCE_MAPPING = [
+    (
+        r"(?P<label>(?P<section>[\w]+))-(?P<paragraph>[\w-]*-Interp)",
+        "Interp-{section}",
+        "{paragraph}",
+    )
+]

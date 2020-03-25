@@ -1,6 +1,6 @@
 # Wagtail-Regulations
 
-[![Build Status](https://travis-ci.org/cfpb/wagtail-regulations.svg?branch=master)](https://travis-ci.org/cfpb/wagtail-regulations)
+[![Build Status](https://github.com/cfpb/wagtail-regulations/workflows/test/badge.svg)](https://github.com/cfpb/wagtail-regulations/actions?query=workflow%3Atest)
 [![Coverage Status](https://coveralls.io/repos/github/cfpb/wagtail-regulations/badge.svg?branch=master)](https://coveralls.io/github/cfpb/wagtail-regulations?branch=master)
 
 Building blocks for interactive regulations in Wagtail.
@@ -94,9 +94,11 @@ The API can be run using
 docker-compose up
 ```
 
-To load example regulation data with the necessary Wagtail pages:
+To load example regulation data with the necessary Wagtail pages 
+you'll need to create a superuser and then load the data:
 
 ```
+docker-compose run app /venv/bin/python manage.py createsuperuser --username admin --email test@example.com
 docker-compose run app /venv/bin/python manage.py loaddata sample_data.json
 ```
 

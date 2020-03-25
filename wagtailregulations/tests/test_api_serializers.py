@@ -4,7 +4,7 @@ from regulations_example.models import (
     TestRegulationLandingPage,
     TestRegulationPage,
 )
-from wagtailregulations.serializers import (
+from wagtailregulations.api.serializers import (
     EffectiveVersionSerializer,
     PartSerializer,
     SectionSerializer,

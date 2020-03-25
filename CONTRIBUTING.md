@@ -40,8 +40,8 @@ and [`flake8`](https://gitlab.com/pycqa/flake8).
 You can format code and imports by calling:
 
 ```
-black flags
-isort --recursive flags
+black regulations_example wagtailregulations
+isort --recursive regulations_example wagtailregulations
 ```
 
 And you can check for style, import order, and other linting by using:
