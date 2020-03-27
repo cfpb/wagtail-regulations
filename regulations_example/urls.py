@@ -16,7 +16,8 @@ urlpatterns = [
     re_path(r"^admin/", include(wagtailadmin_urls)),
     re_path(r"^documents/", include(wagtaildocs_urls)),
     re_path(r"^api/v2/", api_router.urls),
-    re_path(r"^graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
+    re_path(r"^graphql", GraphQLView.as_view(schema=schema)),
+    re_path(r"^graphiql", GraphQLView.as_view(graphiql=True, schema=schema)),
 ]
 
 
