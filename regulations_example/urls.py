@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls import include, re_path
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.core import urls as wagtail_urls
@@ -16,7 +17,10 @@ urlpatterns = [
     re_path(r"^admin/", include(wagtailadmin_urls)),
     re_path(r"^documents/", include(wagtaildocs_urls)),
     re_path(r"^api/v2/", api_router.urls),
-    re_path(r"^graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
+    re_path(
+        r"^graphql",
+        csrf_exempt(GraphQLView.as_view(graphiql=True, schema=schema)),
+    ),
 ]
 
 
