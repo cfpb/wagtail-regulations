@@ -126,3 +126,35 @@ class SchemaTestCase(GraphQLTestCase, RegulationsTestData):
         regulation = regulation_pages[0]["regulation"]
         section = regulation["effectiveVersion"]["subparts"][1]["sections"][0]
         self.assertIn("blockquote", section["renderedContents"])
+
+    def test_query_regulation_slug(self):
+        response = self.query(
+            f"""
+            query {{
+                regulation (slug: "{self.reg_page.slug}") {{
+                    id
+                }}
+            }}
+            """
+        )
+        self.assertResponseNoErrors(response)
+        content = json.loads(response.content)
+        self.assertEqual(
+            self.reg_page.id, int(content["data"]["regulation"]["id"])
+        )
+
+    def test_query_regulation_id(self):
+        response = self.query(
+            f"""
+            query {{
+                regulation (id: {self.reg_page.id}) {{
+                    slug
+                }}
+            }}
+            """
+        )
+        self.assertResponseNoErrors(response)
+        content = json.loads(response.content)
+        self.assertEqual(
+            self.reg_page.slug, content["data"]["regulation"]["slug"]
+        )
