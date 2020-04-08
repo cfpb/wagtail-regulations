@@ -31,9 +31,18 @@ class RegulationPageType(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     regulations = graphene.List(RegulationPageType)
+    regulation = graphene.Field(
+        RegulationPageType, id=graphene.Int(), slug=graphene.String()
+    )
 
     def resolve_regulations(self, info):
         return TestRegulationPage.objects.live()
+
+    def resolve_regulation(self, info, id=None, slug=None):
+        if id is not None:
+            return TestRegulationPage.objects.live().get(id=id)
+        if slug is not None:
+            return TestRegulationPage.objects.live().get(slug=slug)
 
 
 schema = graphene.Schema(query=Query)
