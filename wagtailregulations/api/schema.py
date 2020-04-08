@@ -5,7 +5,7 @@ from wagtailregulations.models import EffectiveVersion, Part, Section, Subpart
 from wagtailregulations.resolver import get_contents_resolver, get_url_resolver
 
 
-class SectionNode(DjangoObjectType):
+class SectionType(DjangoObjectType):
     class Meta:
         model = Section
         fields = (
@@ -29,7 +29,7 @@ class SectionNode(DjangoObjectType):
         return html_contents
 
 
-class SubpartNode(DjangoObjectType):
+class SubpartType(DjangoObjectType):
     class Meta:
         model = Subpart
         fields = (
@@ -39,7 +39,7 @@ class SubpartNode(DjangoObjectType):
         )
 
 
-class EffectiveVersionNode(DjangoObjectType):
+class EffectiveVersionType(DjangoObjectType):
     class Meta:
         model = EffectiveVersion
         fields = (
@@ -50,7 +50,7 @@ class EffectiveVersionNode(DjangoObjectType):
         )
 
 
-class PartNode(DjangoObjectType):
+class PartType(DjangoObjectType):
     class Meta:
         model = Part
         fields = (
@@ -62,7 +62,7 @@ class PartNode(DjangoObjectType):
             "versions",
         )
 
-    effective_version = graphene.Field(EffectiveVersionNode)
+    effective_version = graphene.Field(EffectiveVersionType)
 
     def resolve_effective_version(self, info):
         return self.effective_version

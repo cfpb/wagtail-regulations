@@ -5,7 +5,7 @@ from graphene.types import Scalar
 from graphene_django import DjangoObjectType
 from graphene_django.converter import convert_django_field
 from regulations_example.models import TestRegulationPage
-from wagtailregulations.api.schema import PartNode
+from wagtailregulations.api.schema import PartType
 
 
 class GenericStreamFieldType(Scalar):
@@ -21,8 +21,8 @@ def convert_stream_field(field, registry=None):
     )
 
 
-class RegulationNode(DjangoObjectType):
-    regulation = graphene.Field(PartNode)
+class RegulationPageType(DjangoObjectType):
+    regulation = graphene.Field(PartType)
 
     class Meta:
         model = TestRegulationPage
@@ -30,10 +30,9 @@ class RegulationNode(DjangoObjectType):
 
 
 class Query(graphene.ObjectType):
-    regulations = graphene.List(RegulationNode)
+    regulations = graphene.List(RegulationPageType)
 
-    @graphene.resolve_only_args
-    def resolve_regulations(self):
+    def resolve_regulations(self, info):
         return TestRegulationPage.objects.live()
 
 
