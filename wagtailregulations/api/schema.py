@@ -38,6 +38,12 @@ class SubpartType(DjangoObjectType):
             "sections",
         )
 
+    section = graphene.Field(SectionType, label=graphene.String())
+
+    def resolve_section(self, info, label=None):
+        if label is not None:
+            return Section.objects.get(label=label, subpart=self)
+
 
 class EffectiveVersionType(DjangoObjectType):
     class Meta:
@@ -48,6 +54,12 @@ class EffectiveVersionType(DjangoObjectType):
             "effective_date",
             "subparts",
         )
+
+    subpart = graphene.Field(SubpartType, label=graphene.String())
+
+    def resolve_subpart(self, info, label=None):
+        if label is not None:
+            return Subpart.objects.get(label=label, version=self)
 
 
 class PartType(DjangoObjectType):
@@ -63,9 +75,18 @@ class PartType(DjangoObjectType):
         )
 
     effective_version = graphene.Field(EffectiveVersionType)
+    version = graphene.Field(
+        EffectiveVersionType, effective_date=graphene.Date()
+    )
 
     def resolve_effective_version(self, info):
         return self.effective_version
 
     def resolve_versions(self, info):
         return self.versions.filter(draft=False)
+
+    def resolve_version(self, info, effective_date=None):
+        if effective_date is not None:
+            return EffectiveVersion.objects.get(
+                effective_date=effective_date, part=self
+            )

@@ -1,6 +1,7 @@
 import json
 
 from django.test import override_settings
+from django.utils.dateparse import parse_date
 
 from wagtail.core.models import Site
 
@@ -140,22 +141,47 @@ class SchemaTestCase(GraphQLTestCase, RegulationsTestData):
         self.assertResponseNoErrors(response)
         content = json.loads(response.content)
         self.assertEqual(
-            self.reg_page.id,
-            int(content["data"]["regulationPage"]["id"])
+            self.reg_page.id, int(content["data"]["regulationPage"]["id"])
         )
 
-    def test_query_regulation_id(self):
+    def test_query_regulation_version_subpart_section(self):
         response = self.query(
             f"""
             query {{
-                regulation (id: {self.reg_page.id}) {{
+                regulationPage (slug: "{self.reg_page.slug}") {{
                     slug
+                    regulation {{
+                        version (
+                            effectiveDate:
+                                "{self.effective_version.effective_date}"
+                        ) {{
+                            effectiveDate
+                            subpart (label: "{self.subpart.label}") {{
+                                title
+                                section (label: "{self.section_num2.label}") {{
+                                    title
+                                }}
+                            }}
+                        }}
+                    }}
                 }}
             }}
             """
         )
         self.assertResponseNoErrors(response)
         content = json.loads(response.content)
+
+        page = content["data"]["regulationPage"]
+        self.assertEqual(self.reg_page.slug, page["slug"])
+
+        version = page["regulation"]["version"]
         self.assertEqual(
-            self.reg_page.slug, content["data"]["regulation"]["slug"]
+            self.effective_version.effective_date,
+            parse_date(version["effectiveDate"]),
         )
+
+        subpart = version["subpart"]
+        self.assertEqual(self.subpart.title, subpart["title"])
+
+        section = subpart["section"]
+        self.assertEqual(self.section_num2.title, section["title"])
