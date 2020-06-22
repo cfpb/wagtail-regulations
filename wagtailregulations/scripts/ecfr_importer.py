@@ -28,7 +28,7 @@ from wagtailregulations.parser.regtable import RegTable
 logger = logging.getLogger(__name__)
 
 # eCFR globals
-PART_WHITELIST = [
+PART_ALLOWLIST = [
     "1001",
     "1002",
     "1003",
@@ -615,7 +615,7 @@ def ecfr_to_regdown(part_number, file_path=None):
     To avoid mischief, we make sure the part number is on a whitelist.
     """
     PAYLOAD.reset()
-    if part_number not in PART_WHITELIST:
+    if part_number not in PART_ALLOWLIST:
         raise ValueError("Provided Part number is not a CFPB regulation.")
     starter = datetime.datetime.now()
     if file_path:
